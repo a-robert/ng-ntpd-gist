@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from '../../shared/services/storage.service';
-import { Note } from '../../sdk/models/common.dtos';
+import { Note, Notepad } from '../../sdk/models/common.dtos';
 
 @Injectable()
 export class NotesService {
   private readonly NOTES: string;
+  private readonly NOTEPAD: string;
 
   constructor(private _storage: StorageService) {
     this.NOTES = 'NOTES';
+    this.NOTEPAD = 'NOTEPAD';
+  }
+
+  getNotepad(): Notepad {
+    return this._storage.getItem(this.NOTEPAD) as Notepad;
   }
 
   getNotes(): Note[] {
@@ -21,18 +27,14 @@ export class NotesService {
     return this._storage.setItem(this.NOTES, allNotes);
   }
 
-  saveNote(note: Note): void {
-    const allNotes = this.getNotes();
+  saveNotepad(notepad: Notepad, notes: Note[]): void {
+    this._storage.setItem(this.NOTEPAD, notepad);
+    this._storage.setItem(this.NOTES, notes);
+  }
 
-    // TODO: proper save mechanism
-    allNotes.forEach((mNote) => {
-      if (mNote.id === note.id) {
-        mNote.title = note.title;
-        mNote.description = note.description;
-      }
-    });
-
-    return this._storage.setItem(this.NOTES, allNotes);
+  deleteNotepad(): void {
+    this._storage.removeItem(this.NOTES);
+    this._storage.removeItem(this.NOTEPAD);
   }
 
   deleteNote(noteId: number): void {

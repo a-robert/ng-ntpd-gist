@@ -3,3 +3,7 @@ export interface Note {
   title: string;
   description: string;
 }
+
+export interface Notepad {
+  title: string;
+}

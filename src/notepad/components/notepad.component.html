@@ -8,14 +8,14 @@
     <div class="row action-row">
       <label class="col col-md-4 input-label">
         Notepad title
-        <input class="form-control" type="text" [(ngModel)]="notepadTitle" placeholder="My notepad title..." />
+        <input class="form-control" type="text" [(ngModel)]="notepad.title" placeholder="My notepad title..." />
       </label>
 
       <div class="col offset-md-4 col-md-4 action-button-group">
         <br>
         <button type="button" class="btn btn-light view-stats" ngbButton routerLink="/stats">View stats</button>
-        <button type="button" class="btn btn-primary save" ngbButton>Save</button>
-        <button type="button" class="btn btn-danger delete" ngbButton>Delete</button>
+        <button type="button" class="btn btn-primary save" (click)="saveNotepadState()" ngbButton>Save</button>
+        <button type="button" class="btn btn-danger delete" (click)="resetNotepadState()" ngbButton>Delete</button>
       </div>
     </div>
 
@@ -45,23 +45,7 @@
 
     <div class="notes-container">
       <div class="note row" *ngFor="let note of notes">
-        <div class="col col-md-6">
-          <div class="row">
-            <label class="col col-md-10">
-              <input class="form-control" type="text" [(ngModel)]="note.title" placeholder="Enter note title" />
-            </label>
-
-            <div class="col col-md-2">
-              <button class="btn btn-danger" ngbButton (click)="deleteNote(note.id)">Delete</button>
-            </div>
-          </div>
-
-          <div class="row">
-            <label class="col col-md-10">
-              <textarea class="form-control" [(ngModel)]="note.description"></textarea>
-            </label>
-          </div>
-        </div>
+        <app-note class="col col-md-6" [note]="note" (noteDelete)="onNoteDelete()"></app-note>
       </div>
     </div>
   </div>

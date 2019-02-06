@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NotesService } from './services/notes.service';
 
 import { NotepadComponent } from './components/notepad.component';
+import { NoteComponent } from './components/note.component';
 import { NotepadRoutingModule } from './notepad-routing.module';
 
 @NgModule({
@@ -16,7 +17,7 @@ import { NotepadRoutingModule } from './notepad-routing.module';
   providers: [
     NotesService
   ],
-  declarations: [NotepadComponent]
+  declarations: [NotepadComponent, NoteComponent]
 })
 export class NotepadModule {
 }

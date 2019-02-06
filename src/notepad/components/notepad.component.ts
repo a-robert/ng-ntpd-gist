@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Note } from '../../sdk/models/common.dtos';
+import { Note, Notepad } from '../../sdk/models/common.dtos';
 import { NotesService } from '../services/notes.service';
 import { UtilService } from '../../shared/services/util.service';
 
@@ -10,11 +10,12 @@ import { UtilService } from '../../shared/services/util.service';
   styleUrls: ['./notepad.component.scss']
 })
 export class NotepadComponent {
-  public notepadTitle: string;
+  public notepad: Notepad;
   public newNote: Note;
   public notes: Note[];
 
   constructor(private _notesService: NotesService) {
+    this._fetchNotepad();
     this._resetNewNote();
     this._fetchNotes();
   }
@@ -25,8 +26,17 @@ export class NotepadComponent {
     this._fetchNotes();
   }
 
-  public deleteNote(noteId: number): void {
-    this._notesService.deleteNote(noteId);
+  public onNoteDelete(): void {
+    this._fetchNotes();
+  }
+
+  public saveNotepadState(): void {
+    this._notesService.saveNotepad(this.notepad, this.notes);
+  }
+
+  public resetNotepadState(): void {
+    this._notesService.deleteNotepad();
+    this._fetchNotepad();
     this._fetchNotes();
   }
 
@@ -38,7 +48,13 @@ export class NotepadComponent {
     };
   }
 
+  // FIXME (TODO): fetch notepad and notes should be with one call
+  // need to refactored in order to improve performance
+  private _fetchNotepad(): void {
+    this.notepad = this._notesService.getNotepad() || {title: ''};
+  }
+
   private _fetchNotes(): void {
-    this.notes = this._notesService.getNotes();
+    this.notes = this._notesService.getNotes() || [];
   }
 }
