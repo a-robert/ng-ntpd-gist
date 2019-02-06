@@ -21,6 +21,11 @@ export class NotepadComponent {
   }
 
   public addNote(note: Note): void {
+    if (!note.title || !note.description) {
+      console.error('Note need to have title and description');
+      return;
+    }
+
     this._notesService.addNote(note);
     this._resetNewNote();
     this._fetchNotes();
