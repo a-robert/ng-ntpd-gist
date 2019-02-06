@@ -1,13 +1,28 @@
-<p>Statistics</p>
+<div class="container-fluid stats-application">
+  <div class="container">
+    <br>
+    <div class="main-title">Statistics</div>
+  </div>
 
-<div [chart]="gistCountChart"></div>
+  <div class="container stats-container">
+    <div class="row">
+      <div class="chart col col-md-8" [chart]="gistCountChart"></div>
+      <button type="button" class="btn offset-2 btn-light view-stats" ngbButton routerLink="/notepad">Close</button>
+    </div>
 
-<button class="btn btn-light" (click)="fetchGistsCount()">Load more</button>
+    <div class="row">
+      <button class="col col-md-2 offset-3 btn btn-light" (click)="fetchGistsCount()">Load more</button>
+    </div>
 
-<div [chart]="fileCountChart"></div>
+    <br>
+    <br>
 
-<button class="btn btn-light" (click)="fetchFilesCount()">Load more</button>
+    <div class="row">
+      <div class="chart col col-md-8" [chart]="fileCountChart"></div>
+    </div>
 
-<a [routerLink]="['/notepad']">
-  Close
-</a>
+    <div class="row">
+      <button class="col col-md-2 offset-3 btn btn-light" (click)="fetchFilesCount()">Load more</button>
+    </div>
+  </div>
+</div>
