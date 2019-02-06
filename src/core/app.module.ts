@@ -5,6 +5,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
+import { PageNotFoundComponent } from './not-found.component';
+
+import { NotepadModule } from '../notepad/notepad.module';
+import { StatsModule } from '../stats/stats.module';
 
 const coreModules = [
   NgbModule,
@@ -12,11 +16,14 @@ const coreModules = [
 ];
 
 const appModules = [
+  NotepadModule,
+  StatsModule
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     ...coreModules,
