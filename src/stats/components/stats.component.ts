@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-// import { ROUTE_NOTEPAD } from '../../notepad/notepad-routing.module';
+import { RestService } from '../../shared/services/rest.service';
 
 @Component({
   selector: 'app-stats',
@@ -8,9 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent {
-  public notepadRoute: string;
-
-  constructor() {
-    // this.notepadRoute = `/${ROUTE_NOTEPAD}`;
+  constructor(private _rest: RestService) {
+    _rest.getCountOfGistsCreatedAfter(5).then(a => console.log(a));
+    _rest.getCountOfFilesCreatedAfter(5).then(a => console.log(a));
   }
 }

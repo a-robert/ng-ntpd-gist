@@ -4,21 +4,17 @@ import { Note } from '../../sdk/models/common.dtos';
 import { NotesService } from '../services/notes.service';
 import { UtilService } from '../../shared/services/util.service';
 
-// import { ROUTE_STATS } from '../../stats/stats-routing.module';
-
 @Component({
   selector: 'app-notepad',
   templateUrl: './notepad.component.html',
   styleUrls: ['./notepad.component.scss']
 })
 export class NotepadComponent {
-  public statsRoute: string;
   public notepadTitle: string;
   public newNote: Note;
   public notes: Note[];
 
   constructor(private _notesService: NotesService) {
-    // this.statsRoute = `/${ROUTE_STATS}`;
     this._resetNewNote();
     this._fetchNotes();
   }

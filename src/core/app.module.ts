@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,7 +13,8 @@ import { StatsModule } from '../stats/stats.module';
 
 const coreModules = [
   NgbModule,
-  BrowserModule
+  BrowserModule,
+  HttpClientModule
 ];
 
 const appModules = [
