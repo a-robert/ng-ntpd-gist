@@ -1,4 +1,12 @@
-<p>Notepad</p>
+<p>Statistics</p>
+
+<div [chart]="gistCountChart"></div>
+
+<button class="btn btn-light" (click)="fetchGistsCount()">Load more</button>
+
+<div [chart]="fileCountChart"></div>
+
+<button class="btn btn-light" (click)="fetchFilesCount()">Load more</button>
 
 <a [routerLink]="['/notepad']">
   Close

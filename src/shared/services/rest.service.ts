@@ -28,20 +28,16 @@ export class RestService {
   constructor(private _http: HttpClient) {
   }
 
-  getCountOfGistsCreatedAfter(interval: number): Promise<number> {
+  getCountOfGistsCreatedAfter(since: string): Promise<number> {
     const request: ServiceRequest = new ServiceRequest();
-    const since = new Date();
-    since.setSeconds(since.getSeconds() - interval);
-    request.queryParams.append('since', since.toISOString());
+    request.queryParams.append('since', since);
     request.baseUrl = '/gists/public';
     return this.httpGet(request, resp => ([...resp]).length);
   }
 
-  getCountOfFilesCreatedAfter(interval: number): Promise<number> {
+  getCountOfFilesCreatedAfter(since: string): Promise<number> {
     const request: ServiceRequest = new ServiceRequest();
-    const since = new Date();
-    since.setSeconds(since.getSeconds() - interval);
-    request.queryParams.append('since', since.toISOString());
+    request.queryParams.append('since', since);
     request.baseUrl = '/gists/public';
     return this.httpGet(request, (resp) => {
       const gists = ([...resp]);
