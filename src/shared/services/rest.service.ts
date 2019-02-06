@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { TOKEN } from '../../env';
+
 export class ServiceRequest {
   serverUrl: string;
   baseUrl: string;
@@ -13,7 +15,7 @@ export class ServiceRequest {
   }
 
   constructor() {
-    const _token = 'c435fc2000a627add7abada74d3b9d2265a6a739';
+    const _token = TOKEN;
 
     this.queryParams = new URLSearchParams();
     this.headers = new HttpHeaders().set('Authorization', _token);

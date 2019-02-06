@@ -30,10 +30,7 @@ export class StatsComponent {
     ],
     xAxis: {
       labels: {
-        formatter: (axis) => {
-          // TODO: add proper date formatting
-          return this._gistDates[axis.value];
-        }
+        formatter: axis => this._formatDate(this._gistDates[axis.value])
       }
     }
   } as Highcharts.Options);
@@ -56,10 +53,7 @@ export class StatsComponent {
     ],
     xAxis: {
       labels: {
-        formatter: (axis) => {
-          // TODO: add proper date formatting
-          return this._fileDates[axis.value];
-        }
+        formatter: axis => this._formatDate(this._fileDates[axis.value])
       }
     }
   } as Highcharts.Options);
@@ -91,5 +85,14 @@ export class StatsComponent {
     array.push(currentDate.toISOString());
 
     return since;
+  }
+
+  private _formatDate(icoString?: string): string {
+    if (!icoString) {
+      return '';
+    }
+
+    const date = new Date(icoString);
+    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
 }
