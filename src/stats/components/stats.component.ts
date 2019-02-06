@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ROUTE_NOTEPAD } from '../../notepad/notepad-routing.module';
+// import { ROUTE_NOTEPAD } from '../../notepad/notepad-routing.module';
 
 @Component({
   selector: 'app-stats',
@@ -11,6 +11,6 @@ export class StatsComponent {
   public notepadRoute: string;
 
   constructor() {
-    this.notepadRoute = `/${ROUTE_NOTEPAD}`;
+    // this.notepadRoute = `/${ROUTE_NOTEPAD}`;
   }
 }

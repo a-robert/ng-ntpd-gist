@@ -1,5 +1,50 @@
-<p>Notepad</p>
+<div class="container-fluid notepad-application">
+  <h3 class="title">Notepad Application</h3>
 
-<a [routerLink]="[statsRoute]">
-  Stats
-</a>
+  <div class="container notepad-container">
+    <div class="row action-row">
+      <label class="col col-md-6">
+        Notepad title
+        <input class="form-control" type="text" [(ngModel)]="notepadTitle" placeholder="My notepad title..." />
+      </label>
+      <div class="col col-md-6">
+        <button type="button" class="btn btn-light view-stats" ngbButton routerLink="/stats">View stats</button>
+        <button type="button" class="btn btn-primary save" ngbButton>Save</button>
+        <button type="button" class="btn btn-danger delete" ngbButton>Delete</button>
+      </div>
+    </div>
+
+    <h5>My notes</h5>
+
+    <div class="new-note-container row">
+      <div class="col col-md-6">
+        <label class="">
+          <input class="form-control" type="text" [(ngModel)]="newNote.title" placeholder="Enter note title" />
+        </label>
+
+        <label class="">
+          <textarea class="form-control" [(ngModel)]="newNote.description"></textarea>
+        </label>
+
+        <button class="btn" ngbButton (click)="addNote(newNote)">Add</button>
+      </div>
+    </div>
+
+    <div class="notes-container">
+      <div class="note row" *ngFor="let note of notes">
+        <div class="col col-md-6">
+          <label class="">
+            <input class="form-control" type="text" [(ngModel)]="note.title" placeholder="Enter note title" />
+          </label>
+
+          <label class="">
+            <textarea class="form-control" [(ngModel)]="note.description"></textarea>
+          </label>
+        </div>
+        <div class="col col-md-1">
+          <button class="btn" ngbButton (click)="deleteNote(note.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
